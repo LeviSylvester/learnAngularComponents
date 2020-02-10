@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { DisplayPersonsService } from '../display-persons.service';
 
 @Component({
   selector: 'app-person',
@@ -6,15 +7,22 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
-  @Input() persons;
-  @Input() handleClickEvent;
-  @Output() newPersonSelectedEvent = new EventEmitter();
-  constructor() { }
+  persons = [];
+  constructor(private service: DisplayPersonsService) { }
+
+  refreshPage() {
+    const setItems = data => (this.persons = data);
+    this.service.getPeople().subscribe(setItems);
+  }
 
   ngOnInit() {
+    this.refreshPage();
   }
 
-  selectNewPerson(person) {
-    this.newPersonSelectedEvent.emit(person);
+  clickToDeletePerson(id) {
+    this.service.deletePerson(id).subscribe(() => {
+      this.refreshPage();
+    });
   }
+
 }

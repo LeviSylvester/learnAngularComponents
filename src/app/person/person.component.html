@@ -1,4 +1,9 @@
 <ul>Persons:
-  <li (click)="selectNewPerson(person)"
-      *ngFor = "let person of persons">{{ person.id }}. {{ person.name }}</li>
+  <li *ngFor="let person of persons">
+    <a [routerLink]="['/persons', person.id]">{{ person.id }}. {{ person.name }}</a>
+    <!--    <a routerLink="/persons/{{ person.id }}">{{ person.name }}</a>-->
+    <button (click)="clickToDeletePerson(person.id)">Delete</button>
+    <button [routerLink]="['/persons', person.id, 'edit']">Edit</button>
+  </li>
+  <button [routerLink]="['/persons', 'create']">Create</button>
 </ul>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {DisplayPersonsService} from '../display-persons.service';
 
 @Component({
   selector: 'app-detail',
@@ -8,12 +9,15 @@ import {Observable} from 'rxjs';
 })
 export class DetailComponent implements OnInit {
 
-  @Input() person;
+  person = {};
 
-  constructor() {
+  constructor(private route: ActivatedRoute, private service: DisplayPersonsService) {
   }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    const setItems = data => (this.person = data);
+    this.service.getPerson(id).subscribe(setItems);
   }
 
 }
