@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DisplayPersonsService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   personsUrl = 'http://localhost:3000/persons';
 
@@ -27,6 +26,11 @@ export class DisplayPersonsService {
   }
 
   createPerson(person) {
-    return this.http.post(this.personsUrl + '/' + person.id, person);
+    // daca te uiti in documentatie la POST o sa vezi ca spre deosebire
+    // de PUT aici nu ai nevoie sa ii specifici idul
+    // PUT /persons/1
+    // POST /persons
+    // return this.http.post(this.personsUrl + '/' + person.id, person);
+    return this.http.post(this.personsUrl, person);
   }
 }
