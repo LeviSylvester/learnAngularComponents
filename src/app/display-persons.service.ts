@@ -26,11 +26,6 @@ export class DisplayPersonsService {
   }
 
   createPerson(person) {
-    // daca te uiti in documentatie la POST o sa vezi ca spre deosebire
-    // de PUT aici nu ai nevoie sa ii specifici idul
-    // PUT /persons/1
-    // POST /persons
-    // return this.http.post(this.personsUrl + '/' + person.id, person);
     return this.http.post(this.personsUrl, person);
   }
 }

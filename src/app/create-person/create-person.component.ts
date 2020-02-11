@@ -19,11 +19,6 @@ export class CreatePersonComponent implements OnInit {
   constructor(private service: DisplayPersonsService, private router: Router) {}
 
   ngOnInit() {
-    // nu trebuie sa faci nimic pe onInit - salvezi o persoana noua
-    // doar cand dai click pe butonul de submit
-    // const id = this.route.snapshot.paramMap.get('id') + 1;
-    // const setItems = data => (this.person = data);
-    // this.service.createPerson(this.person).subscribe(setItems);
   }
 
   createOnSubmit() {
